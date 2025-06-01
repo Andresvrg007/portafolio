@@ -96,23 +96,52 @@ function toggleTheme() {
     localStorage.setItem('theme', newTheme);
 }
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle - SIMPLE Y EFECTIVO
 function toggleMobileMenu() {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const navMenu = document.getElementById('navMenu');
+    
+    console.log('Toggle clicked'); // Debug
     
     if (mobileMenuToggle && navMenu) {
         const isActive = navMenu.classList.contains('active');
         
         if (isActive) {
+            // Cerrar menú
             mobileMenuToggle.classList.remove('active');
             navMenu.classList.remove('active');
+            navMenu.style.display = 'none';
             document.body.style.overflow = '';
+            console.log('Menu closed');
         } else {
+            // Abrir menú - FORZAR TODOS LOS ESTILOS
             mobileMenuToggle.classList.add('active');
             navMenu.classList.add('active');
+            
+            // FORZAR ESTILOS INLINE
+            navMenu.style.display = 'flex';
+            navMenu.style.position = 'fixed';
+            navMenu.style.top = '0';
+            navMenu.style.left = '0';
+            navMenu.style.right = '0';
+            navMenu.style.bottom = '0';
+            navMenu.style.width = '100vw';
+            navMenu.style.height = '100vh';
+            navMenu.style.zIndex = '10000';
+            navMenu.style.backgroundColor = 'var(--bg)';
+            navMenu.style.flexDirection = 'column';
+            navMenu.style.justifyContent = 'center';
+            navMenu.style.alignItems = 'center';
+            navMenu.style.gap = '2rem';
+            navMenu.style.padding = '2rem';
+            navMenu.style.listStyle = 'none';
+            navMenu.style.margin = '0';
+            
             document.body.style.overflow = 'hidden';
+            console.log('Menu opened with forced styles');
         }
+    } else {
+        console.error('Menu elements not found!');
     }
 }
 
@@ -321,6 +350,89 @@ document.addEventListener('DOMContentLoaded', function() {
             closeMobileMenu();
         }
     });
+    
+    // CSS DE EMERGENCIA PARA EL MENÚ
+    const emergencyCSS = document.createElement('style');
+    emergencyCSS.innerHTML = `
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none !important;
+            }
+            .nav-menu.active {
+                display: flex !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                z-index: 10000 !important;
+                background: var(--bg) !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 2rem !important;
+                padding: 2rem !important;
+                list-style: none !important;
+                margin: 0 !important;
+            }
+            .nav-menu.active li {
+                list-style: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .nav-menu.active a {
+                display: block !important;
+                padding: 1rem 2rem !important;
+                font-size: 1.3rem !important;
+                font-weight: 600 !important;
+                background: var(--bg-secondary) !important;
+                border: 2px solid var(--border) !important;
+                border-radius: 12px !important;
+                text-align: center !important;
+                width: 200px !important;
+                color: var(--text) !important;
+                text-decoration: none !important;
+                margin-bottom: 0.5rem !important;
+                transition: all 0.3s ease !important;
+            }
+            .nav-menu.active a:hover {
+                background: var(--primary) !important;
+                color: white !important;
+                transform: translateY(-3px) !important;
+            }
+            .mobile-menu-toggle {
+                z-index: 10001 !important;
+            }
+            .header-controls {
+                order: 2 !important;
+            }
+            .theme-toggle {
+                order: 1 !important;
+            }
+            .language-selector {
+                order: 2 !important;
+            }
+            .mobile-menu-toggle {
+                order: 3 !important;
+            }
+        }
+        
+        [data-theme="dark"] .nav-menu.active {
+            background: var(--bg) !important;
+        }
+        [data-theme="dark"] .nav-menu.active a {
+            background: var(--bg-secondary) !important;
+            border-color: var(--border) !important;
+            color: var(--text) !important;
+        }
+        [data-theme="dark"] .nav-menu.active a:hover {
+            background: var(--primary) !important;
+            color: white !important;
+        }
+    `;
+    document.head.appendChild(emergencyCSS);
     
     // Inicializar funcionalidades
     initScrollToTop();

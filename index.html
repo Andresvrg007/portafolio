@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junior Vargas - Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Junior Vargas - Full Stack Developer Portfolio">
+    <meta name="keywords" content="developer, portfolio, javascript, react, flutter">
+    <meta name="author" content="Junior Vargas">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="bubblesContainer"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <h1>Junior Vargas</h1>
+            </div>
+            
+            <!-- Menú hamburguesa -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" data-translate="home">Home</a></li>
+                <li><a href="#projects" data-translate="projects">Projects</a></li>
+                <li><a href="#skills" data-translate="skills">Skills</a></li>
+                <li><a href="#contact" data-translate="contact">Contact</a></li>
+            </ul>
+            
+            <div class="header-controls">
+                <select class="language-selector" id="languageSelector">
+                    <option value="en">EN</option>
+                    <option value="es">ES</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="moon-icon">🌙</span>
+                    <span class="sun-icon">☀️</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        ↑
+    </button>
+
+    <!-- Main -->
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2><span data-translate="greeting">Hello! I'm</span> <span class="highlight">Junior</span></h2>
+                <p class="hero-subtitle" data-translate="subtitle">Software Engineer | Full Stack Developer</p>
+                <p class="hero-description" data-translate="description">I build awesome web experiences with clean code and a modern look. Honestly, using React or Next.js for a simple portfolio like this feels a bit over the top sometimes plain Vanilla JavaScript is all you really need, and I love keeping it simple.</p>
+                <a href="#projects" class="cta-button" data-translate="ctaButton">View My Projects</a>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 data-translate="projectsTitle">My Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <img src="images/1.png" alt="Expense Tracker">
+                        <div class="project-info">
+                            <h3 data-translate="project1Title">Expense Tracker</h3>
+                            <p data-translate="project1Desc">Mastered user authentication, data visualization with charts, and full-stack development connecting frontend with secure backend APIs.</p>
+                            <div class="project-links">
+                                <a href="https://frontend-production-f0c6.up.railway.app/" target="_blank" data-translate="viewDemo">View Demo</a>
+                                <a href="https://github.com/Andresvrg007/expensesApp" target="_blank" data-translate="viewCode">View Code</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="images/2.PNG" alt="React CRUD App">
+                        <div class="project-info">
+                            <h3 data-translate="project2Title">React CRUD App</h3>
+                            <p data-translate="project2Desc">MERN stack task manager with JWT authentication and protected routes. Learned full-stack development, React Router, and secure user authentication patterns.</p>
+                            <div class="project-links">
+                                <a href="https://frontend-react-production-4a1a.up.railway.app/" target="_blank" data-translate="viewDemo">View Demo</a>
+                                <a href="https://github.com/Andresvrg007/TaskAppAuth" target="_blank" data-translate="viewCode">View Code</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="images/3.jpg" alt="Flutter Expense App">
+                        <div class="project-info">
+                            <h3 data-translate="project3Title">Flutter Expense App</h3>
+                            <p data-translate="project3Desc">Mobile app with MVVM architecture, offline/online sync, and multithreading for PDF generation. Learned Flutter, REST API integration, and background processing.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank" data-translate="viewDemo">View Demo</a>
+                                <a href="https://github.com/Andresvrg007/ExpenseTrackerFlutterApp/tree/main" target="_blank" data-translate="viewCode">View Code</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-info">
+                            <h3 data-translate="project4Title">Pharmacy Inventory System</h3>
+                            <p data-translate="project4Desc">Built with Vanilla JavaScript, Express.js and MySQL. Learned database design, CRUD operations, and responsive UI for small business management.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank" data-translate="viewDemo">View Demo</a>
+                                <a href="https://github.com/Andresvrg007/inventoryJavascript" target="_blank" data-translate="viewCode">View Code</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-info">
+                            <h3 data-translate="project5Title">React CRUD Learning Project</h3>
+                            <p data-translate="project5Desc">I built a React CRUD app using useState, useEffect, and fetch with json-server. This project helped me understand component interaction and state management.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank" data-translate="viewDemo">View Demo</a>
+                                <a href="https://github.com/Andresvrg007/crudReact" target="_blank" data-translate="viewCode">View Code</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-info">
+                            <h3 data-translate="project6Title">Vanilla JavaScript CRUD</h3>
+                            <p data-translate="project6Desc">In this CRUD I'm using JS in the frontend, Express in the backend communicating them with JSON for efficient data exchange.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank" data-translate="viewDemo">View Demo</a>
+                                <a href="https://github.com/Andresvrg007/CRUD--EXPRESS-AND-JS" target="_blank" data-translate="viewCode">View Code</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 data-translate="skillsTitle">My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="devicon-html5-plain colored skill-icon"></i>
+                        <h3>HTML</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-css3-plain colored skill-icon"></i>
+                        <h3>CSS</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-javascript-plain colored skill-icon"></i>
+                        <h3>JavaScript</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-git-plain colored skill-icon"></i>
+                        <h3>Git</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-react-original colored skill-icon"></i>
+                        <h3>React</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-react-original colored skill-icon"></i>
+                        <h3>React Native</h3>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🚀</div>
+                        <h3>Next.js</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-nodejs-plain colored skill-icon"></i>
+                        <h3>Node.js</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-express-original skill-icon"></i>
+                        <h3>Express</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-python-plain colored skill-icon"></i>
+                        <h3>Python</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-tailwindcss-plain colored skill-icon"></i>
+                        <h3>Tailwind CSS</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-railway-original skill-icon"></i>
+                        <h3>Railway</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-mysql-plain colored skill-icon"></i>
+                        <h3>MySQL</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-mongodb-plain colored skill-icon"></i>
+                        <h3>MongoDB</h3>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon english-icon">🇺🇸</div>
+                        <h3>Professional English</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <h2 data-translate="contactTitle">Let's Work Together!</h2>
+            <p data-translate="contactDesc">Do you have a project in mind? I'd love to hear from you.</p>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" name="from_name" data-translate-placeholder="namePlaceholder" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="from_email" data-translate-placeholder="emailPlaceholder" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="subject" data-translate-placeholder="subjectPlaceholder" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" data-translate-placeholder="messagePlaceholder" placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn" data-translate="sendButton">Send Message</button>
+            </form>
+
+            <div class="social-links">
+                <a href="https://do.linkedin.com/in/junior-andres-vargas-pe%C3%B1a-7a8a981b5" target="_blank">
+                    <i class="devicon-linkedin-plain"></i>
+                </a>
+                <a href="https://wa.me/8296995817" target="_blank">📱</a>
+                <a href="https://github.com/Andresvrg007" target="_blank">
+                    <i class="devicon-github-original"></i>
+                </a>
+                <a href="mailto:andresvrg007@gmail.com">📧</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

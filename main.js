@@ -346,9 +346,15 @@ function sendEmail(event) {
     emailjs.sendForm('service_karczjh', 'template_9cseeya', form)
         .then(() => {
             // Notificación de éxito
-            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+            
             form.reset();
-            console.log('Email sent successfully'); // Debug para móvil
+            const savedLanguage = localStorage.getItem('language');
+            if(savedLanguage==='en'){
+                showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+            }else{
+                showNotification('Se envió el mensaje correctamente! Te responderé muy pronto', 'success');
+            }
+            
         })
         .catch((error) => {
             // Notificación de error

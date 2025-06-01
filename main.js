@@ -31,7 +31,10 @@ const translations = {
         emailPlaceholder: "Your Email",
         subjectPlaceholder: "Subject",
         messagePlaceholder: "Your Message",
-        sendButton: "Send Message"
+        sendButton: "Send Message",
+        sendingButton: "Sending...",
+        successMessage: "Message sent successfully! I'll get back to you soon.",
+        errorMessage: "Failed to send message. Please try again or contact me directly."
     },
     es: {
         home: "Inicio",
@@ -64,7 +67,10 @@ const translations = {
         emailPlaceholder: "Tu Email",
         subjectPlaceholder: "Asunto",
         messagePlaceholder: "Tu Mensaje",
-        sendButton: "Enviar Mensaje"
+        sendButton: "Enviar Mensaje",
+        sendingButton: "Enviando...",
+        successMessage: "¡Mensaje enviado con éxito! Te responderé pronto.",
+        errorMessage: "Error al enviar mensaje. Inténtalo de nuevo o contáctame directamente."
     }
 };
 
@@ -288,6 +294,41 @@ function initParticles() {
 // EmailJS
 emailjs.init("O2bSwDhlfvns_Iqu_");
 
+// Sistema de notificaciones personalizado
+function showNotification(message, type = 'success') {
+    // Remover notificación existente si la hay
+    const existingNotification = document.querySelector('.custom-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Crear notificación
+    const notification = document.createElement('div');
+    notification.className = `custom-notification ${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-icon">${type === 'success' ? '✅' : '❌'}</span>
+            <span class="notification-message">${message}</span>
+            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+    `;
+    
+    // Agregar al body
+    document.body.appendChild(notification);
+    
+    // Mostrar con animación
+    setTimeout(() => notification.classList.add('show'), 100);
+    
+    // Auto-remover después de 4 segundos
+    setTimeout(() => {
+        if (notification && notification.parentElement) {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }
+    }, 4000);
+}
+
+// Función de email actualizada
 function sendEmail(event) {
     event.preventDefault();
     
@@ -295,20 +336,30 @@ function sendEmail(event) {
     const btn = form.querySelector('.submit-btn');
     const originalText = btn.textContent;
     
+    // Cambiar texto del botón
     btn.textContent = 'Sending...';
     btn.disabled = true;
     
+    // Agregar clase de loading
+    btn.classList.add('loading');
+    
     emailjs.sendForm('service_karczjh', 'template_9cseeya', form)
         .then(() => {
-            alert('Message sent successfully!');
+            // Notificación de éxito
+            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
             form.reset();
+            console.log('Email sent successfully'); // Debug para móvil
         })
-        .catch(() => {
-            alert('Failed to send message. Please try again.');
+        .catch((error) => {
+            // Notificación de error
+            showNotification('Failed to send message. Please try again or contact me directly.', 'error');
+            console.error('Email error:', error); // Debug para móvil
         })
         .finally(() => {
+            // Restaurar botón
             btn.textContent = originalText;
             btn.disabled = false;
+            btn.classList.remove('loading');
         });
 }
 
@@ -351,9 +402,145 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // CSS DE EMERGENCIA PARA EL MENÚ
+    // CSS DE EMERGENCIA ACTUALIZADO (agregar estilos de notificación)
     const emergencyCSS = document.createElement('style');
     emergencyCSS.innerHTML = `
+        /* Notificaciones personalizadas */
+        .custom-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 20000;
+            max-width: 400px;
+            width: calc(100% - 40px);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e5e7eb;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .custom-notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .custom-notification.success {
+            border-left: 4px solid #10b981;
+        }
+        
+        .custom-notification.error {
+            border-left: 4px solid #ef4444;
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            gap: 0.75rem;
+        }
+        
+        .notification-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .notification-message {
+            flex: 1;
+            font-size: 0.95rem;
+            color: #374151;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #9ca3af;
+            cursor: pointer;
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .notification-close:hover {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        
+        /* Dark theme */
+        [data-theme="dark"] .custom-notification {
+            background: var(--bg-secondary);
+            border-color: var(--border);
+        }
+        
+        [data-theme="dark"] .notification-message {
+            color: var(--text);
+        }
+        
+        [data-theme="dark"] .notification-close {
+            color: var(--text-light);
+        }
+        
+        [data-theme="dark"] .notification-close:hover {
+            background: var(--border);
+            color: var(--text);
+        }
+        
+        /* Botón loading */
+        .submit-btn.loading {
+            position: relative;
+            color: transparent;
+        }
+        
+        .submit-btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 480px) {
+            .custom-notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                width: auto;
+                max-width: none;
+            }
+            
+            .notification-content {
+                padding: 0.875rem 1rem;
+                gap: 0.5rem;
+            }
+            
+            .notification-message {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Estilos móvil existentes */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none !important;

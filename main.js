@@ -34,7 +34,8 @@ const translations = {
         sendButton: "Send Message",
         sendingButton: "Sending...",
         successMessage: "Message sent successfully! I'll get back to you soon.",
-        errorMessage: "Failed to send message. Please try again or contact me directly."
+        errorMessage: "Failed to send message. Please try again or contact me directly.",
+        downloadCV: "Download CV"
     },
     es: {
         home: "Inicio",
@@ -70,7 +71,8 @@ const translations = {
         sendButton: "Enviar Mensaje",
         sendingButton: "Enviando...",
         successMessage: "¡Mensaje enviado con éxito! Te responderé pronto.",
-        errorMessage: "Error al enviar mensaje. Inténtalo de nuevo o contáctame directamente."
+        errorMessage: "Error al enviar mensaje. Inténtalo de nuevo o contáctame directamente.",
+        downloadCV: "Descargar CV"
     }
 };
 
@@ -89,6 +91,12 @@ function changeLanguage(language) {
             element.placeholder = translations[language][key];
         }
     });
+    
+    // Actualizar texto del botón de CV si existe
+    const cvBtn = document.getElementById('downloadCVBtn');
+    if (cvBtn && translations[language] && translations[language].downloadCV) {
+        cvBtn.textContent = translations[language].downloadCV;
+    }
     
     localStorage.setItem('language', language);
 }
